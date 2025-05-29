@@ -1,7 +1,9 @@
-import pgdbDatabase from "../database/pgdbDatabase.js";
+import pgdbDatabase from "../database/pgdbDatabase.ts";
 class equiposController{
     async obtenerEquipo({request,response}){
-        const resu= await pgdbDatabase.query('select * from equipos')
+        const resu = await pgdbDatabase.query(`
+  SELECT equipos.codigo, equipos.nombre, equipos.anio_de_fundacion, presidentes.dni, presidentes.nombre AS presidente FROM equipos
+  JOIN presidentes ON equipos.dni_del_presidente = presidentes.dni`)
         console.log(resu.rows)
         return response.json({mensaje:resu.rows})
     }

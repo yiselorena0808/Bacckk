@@ -1,4 +1,4 @@
-import pgdbDatabase from "../database/pgdbDatabase.js";
+import pgdbDatabase from "../database/pgdbDatabase.ts";
 
 class AdicionalesController {
   async listarPorPresi({params,request,response }) {
@@ -15,7 +15,7 @@ class AdicionalesController {
   }
   async listarNombre({params, request, response}){
     const nombre = params.nombre
-    const resu = await pgdbDatabase.query('SELECT * from equipos where nombre ilike $1', [`%${nombre}%`])
+    const resu = await pgdbDatabase.query('SELECT * from equipos where nombre like $1', [`%${nombre}%`])
     console.log(resu)
     return response.json({mensaje: resu.rows})
  }

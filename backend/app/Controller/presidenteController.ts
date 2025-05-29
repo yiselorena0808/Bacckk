@@ -1,4 +1,4 @@
-import pgdbDatabase from "../database/pgdbDatabase.js";
+import pgdbDatabase from "../database/pgdbDatabase.ts";
 class presidenteController{
     async obtenerPresi({request,response}){
         const resu= await pgdbDatabase.query('select * from presidentes')
